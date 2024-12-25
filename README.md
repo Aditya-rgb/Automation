@@ -115,6 +115,19 @@ web_server_public_ip = "18.191.30.78"
 ```
 
 
+## Project Structure
+```bash
+├── main.tf                # Main Terraform configuration
+├── variables.tf           # Variable definitions
+├── outputs.tf             # Resource outputs
+├── modules/
+│   ├── vpc/               # VPC and network configurations
+│   ├── ec2/               # EC2 instance setup
+│   ├── security_groups/   # Security group definitions
+│   ├── iam/               # IAM roles and policies
+
+```
+
 ## Terraform Scripts Flow
 
 ### 1. AWS Setup and Terraform Initialization
