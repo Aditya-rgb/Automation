@@ -478,3 +478,13 @@ ansible-playbook -i inventory database_server_setup.yml
 ansible-playbook -i inventory app_deployment.yml
 ```
 
+## Step 5: Verify the Application Is Running
+
+### Check the Backend (Node.js) Service
+- On the backend EC2 instance (public subnet), ensure that the backend service (Node.js) is running:
+  ```bash
+  ps aux | grep 'node index.js'
+  ps aux | grep 'npm start'
+  ps aux | grep 'mongod'
+  # Open a browser and visit the public IP of the web server EC2 instance
+  ```
