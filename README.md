@@ -382,35 +382,96 @@ ansible-playbook -i inventory database_server_setup.yml
 
 - **Ansible playbook (`app_deployment.yml`):**
 
-  ```yaml
-  ---
-  - hosts: database_servers
-    become: yes
-    tasks:
-      - name: Set environment variables for backend
-        lineinfile:
-          path: /home/ubuntu/mern-app/backend/.env
-          line: "DB_URL=mongodb://your_mongo_db_host:27017/mern"
+```bash
 
-      - name: Start the backend Node.js application
-        command: npm install && node index.js
-        args:
-          chdir: /home/ubuntu/mern-app/backend
+- name: Deploy MERN Application
+  hosts: web_servers
+  become: yes
+  vars:
+    node_version: "14.x"
+  tasks:
+    - name: Install Node.js
+      apt:
+        name: "nodejs"
+        state: present
+      become: yes
 
-  - hosts: web_servers
-    become: yes
-    tasks:
-      - name: Navigate to frontend folder and install dependencies
-        command: npm install
-        args:
-          chdir: /home/ubuntu/mern-app/frontend
+    - name: Install npm
+      apt:
+        name: "npm"
+        state: present
+      become: yes
 
-      - name: Start the frontend React application
-        command: npm start
-        args:
-          chdir: /home/ubuntu/mern-app/frontend
+    - name: Clone the backend repository
+      git:
+        repo: 'https://github.com/yourusername/your-backend-repo.git'
+        dest: /home/ubuntu/backend
+        version: master
+      become: yes
 
-  ```
+    - name: Install dependencies for the backend
+      npm:
+        path: /home/ubuntu/backend
+        state: present
+      become: yes
+
+    - name: Start the backend application
+      command: node /home/ubuntu/backend/index.js
+      become: yes
+
+- name: Deploy Frontend Application
+  hosts: web_servers
+  become: yes
+  tasks:
+    - name: Clone the frontend repository
+      git:
+        repo: 'https://github.com/yourusername/your-frontend-repo.git'
+        dest: /home/ubuntu/frontend
+        version: master
+      become: yes
+
+    - name: Install dependencies for the frontend
+      npm:
+        path: /home/ubuntu/frontend
+        state: present
+      become: yes
+
+    - name: Start the frontend application
+      command: npm start
+      args:
+        chdir: /home/ubuntu/frontend
+      become: yes
+
+    - name: Ensure the frontend app is running
+      command: ps aux | grep 'npm start'
+      become: yes
+
+- name: Database Server Setup
+  hosts: db_servers
+  become: yes
+  tasks:
+    - name: Install MongoDB
+      apt:
+        name: mongodb
+        state: present
+      become: yes
+
+    - name: Start MongoDB service
+      service:
+        name: mongodb
+        state: started
+        enabled: yes
+      become: yes
+
+    - name: Secure MongoDB
+      command: mongo --eval 'db.createUser({user:"admin", pwd:"yourpassword", roles:[{role:"root", db:"admin"}]})'
+      become: yes
+
+    - name: Verify MongoDB is running
+      command: ps aux | grep 'mongod'
+      become: yes
+
+```
 
 ### Command to run the playbook:
 ```bash
