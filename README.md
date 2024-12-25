@@ -115,6 +115,85 @@ web_server_public_ip = "18.191.30.78"
 ```
 
 
+## Terraform Scripts Flow
+
+### 1. AWS Setup and Terraform Initialization
+
+**Scripts Involved:**
+- `main.tf`: Configures the AWS provider.
+- `variables.tf`: Defines variables like AWS region and credentials.
+
+**Actions:**
+- Manually configure AWS CLI for authentication (outside Terraform).
+- Run `terraform init` to initialize the project with the AWS provider.
+
+---
+
+### 2. VPC and Network Configuration
+
+**Scripts Involved:**
+- `modules/vpc/main.tf`: Defines the VPC, subnets, Internet Gateway, NAT Gateway, and route tables.
+- `modules/vpc/outputs.tf`: Exports subnet IDs and VPC ID for use in other modules.
+
+**Actions:**
+- Creates:
+  - VPC with one public and one private subnet.
+  - Internet Gateway for external access to the public subnet.
+  - NAT Gateway for private subnet internet access.
+  - Route Tables to link subnets and gateways.
+
+---
+
+### 3. EC2 Instance Provisioning
+
+**Scripts Involved:**
+- `modules/ec2/main.tf`: Launches EC2 instances using AMIs, instance types, and subnet details.
+- `modules/vpc/outputs.tf`: Supplies subnet IDs for instance placement.
+
+**Actions:**
+- Launches:
+  - One EC2 instance in the public subnet (web server).
+  - One EC2 instance in the private subnet (database server).
+- Configures SSH key pairs and ensures access control:
+  - Public instance accessible only from your IP.
+  - Private instance accessible only from the public instance (bastion host setup).
+
+---
+
+### 4. Security Groups and IAM Roles
+
+**Scripts Involved:**
+- `modules/security_groups/main.tf`: Configures security groups for the web server and database.
+- `modules/iam/main.tf`: Creates IAM roles for EC2 with permissions for AWS services.
+
+**Actions:**
+- **Security Groups:**
+  - Web server: Allows HTTP, HTTPS, and SSH (from your IP only).
+  - Database server: Allows connections only from the web server.
+- **IAM Roles:**
+  - Assign roles with required permissions for EC2 instances.
+
+---
+
+### 5. Resource Output
+
+**Scripts Involved:**
+- `outputs.tf`: Outputs the public IP of the web server and other key details.
+
+**Actions:**
+- Displays the public IP of the web server EC2 instance.
+- Outputs other resources (e.g., VPC ID, subnet IDs) as needed.
+
+---
+
+## Execution Flow
+
+These steps are strictly followed when:
+- You run `terraform apply`.
+- The modules and configurations in the scripts align with the required sequence.
+
+
+
 
 
 
