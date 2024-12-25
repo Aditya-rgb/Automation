@@ -97,6 +97,22 @@ Apply complete! Resources: 5 added, 0 changed, 0 destroyed.
 ```
 
 
+## **5. View the Terraform Outputs**
+
+```bash
+terraform output
+```
+- **What it does:**
+  - Displays the values of outputs defined in your Terraform configuration (e.g., public IP of the web server).
+  - Useful for retrieving key information about your infrastructure once the apply process is complete.
+
+- **When to run:**
+  - Run this command after applying the configuration to see the results (e.g., public IP of your EC2 instance).
+  - Helpful to fetch dynamic outputs such as IP addresses, instance IDs, etc.
+- **OUTPUT:**
+```bash
+web_server_public_ip = "18.191.30.78"
+```
 
 
 
