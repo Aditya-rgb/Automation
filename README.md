@@ -210,7 +210,33 @@ These steps are strictly followed when:
 
 This section covers the setup and configuration of the web and database servers using Ansible for the deployment of a MERN application.
 
----
+## Project Structure for Ansible
+
+```bash
+
+│
+├── inventory/               # Inventory file where EC2 instances are defined
+│   └── hosts                # Lists the web_servers and database_servers groups
+│
+├── playbooks/               # Directory for all Ansible playbooks
+│   ├── app_deployment.yml   # Playbook to deploy the MERN app (frontend & backend)
+│   ├── db_setup.yml         # Playbook for configuring MongoDB on the database server
+│   └── web_setup.yml        # Playbook to set up Node.js, NPM, and the frontend application
+│
+├── roles/                   # Directory to define roles for better task organization
+│   ├── backend/             # Role for backend tasks (Node.js and MongoDB)
+│   │   ├── tasks/           # Tasks related to backend setup
+│   │   │   └── main.yml     # Includes tasks to install and start backend services
+│   │   └── files/           # Backend-related files (e.g., environment files)
+│   └── frontend/            # Role for frontend tasks (React app setup)
+│       ├── tasks/           # Tasks related to frontend setup
+│       │   └── main.yml     # Includes tasks to install and start frontend services
+│       └── files/           # Frontend-related files (e.g., static files)
+│
+└── vars/                    # Variables for configuration and customization
+    └── main.yml             # Variables for backend and frontend server configurations
+
+```
 
 ### **1. Ansible Configuration**
 
