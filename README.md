@@ -243,7 +243,7 @@ This section covers the setup and configuration of the web and database servers 
 
 ### Ansible playbook web_server_setup.yml :
 ```bash
----
+
 - hosts: web_servers
   become: yes
   tasks:
@@ -259,7 +259,7 @@ This section covers the setup and configuration of the web and database servers 
 
     - name: Clone MERN application repository
       git:
-        repo: 'https://github.com/your_user/mern-app.git'
+        repo: 'git@github.com:UnpredictablePrashant/TravelMemory.git'
         dest: /home/ubuntu/mern-app
 
     - name: Install dependencies
