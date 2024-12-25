@@ -1,6 +1,6 @@
 
 ## **Introduction**
-This project uses Terraform to provision AWS infrastructure, including a VPC, subnets, EC2 instances, security groups, and IAM roles. The infrastructure is configured to host a MERN application with separate web and database servers.
+This project automates the deployment of a MERN stack application on AWS using Terraform for infrastructure provisioning and Ansible for configuration and application deployment.
 
 # **Part 1: Configuration and Deployment with Terraform**
 
