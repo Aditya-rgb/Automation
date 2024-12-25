@@ -18,3 +18,16 @@ This project uses Terraform to provision AWS infrastructure, including a VPC, su
    ```bash
    aws configure
 4. **SSH Key Pair**: Create an SSH key pair to access EC2 instances.
+
+
+## **Terraform Execution Flow** 
+
+This guide provides a step-by-step explanation of how to execute Terraform commands to provision and manage infrastructure.
+
+---
+
+## **1. Initialize the Terraform Project**
+
+```bash
+terraform init
+
