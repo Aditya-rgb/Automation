@@ -1,0 +1,34 @@
+---
+# backend/tasks/main.yml
+
+- name: Install Node.js
+  apt:
+    name: nodejs
+    state: present
+  become: yes
+
+- name: Install npm
+  apt:
+    name: npm
+    state: present
+  become: yes
+
+- name: Clone the backend repository
+  git:
+    repo: 'https://github.com/your-username/your-repo.git'
+    dest: /home/ubuntu/backend
+    version: 'main'
+  become: yes
+
+- name: Install dependencies for the backend
+  command: npm install
+  args:
+    chdir: /home/ubuntu/backend
+  become: yes
+
+- name: Start the backend application
+  command: node index.js
+  args:
+    chdir: /home/ubuntu/backend
+  become: yes
+
