@@ -268,7 +268,10 @@ This section covers the setup and configuration of the web and database servers 
         chdir: /home/ubuntu/mern-app
 ```
 
-
+### Command to run the playbook:
+```bash
+ansible-playbook -i inventory web_server_setup.yml
+```
 
 
 
