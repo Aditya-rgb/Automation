@@ -37,4 +37,18 @@ terraform init
 - **When to run:**
   - Execute this command once after creating your scripts or whenever you add/modify modules or providers.
 
+## **2. Validate the Terraform Configuration**
+
+```bash
+terraform validate
+```
+- **What it does:**
+  - Validates the syntax and configuration of your Terraform scripts.
+  - Checks that there are no errors or issues in the code and that all resources are correctly defined.
+  - Does not modify any resources; it only verifies the configuration.
+
+- **When to run:**
+  - Run this command after modifying your Terraform scripts or adding new resources.
+  - It's a good practice to validate your code before planning or applying changes to ensure everything is correctly set up.
+
 
