@@ -52,3 +52,13 @@ terraform validate
   - It's a good practice to validate your code before planning or applying changes to ensure everything is correctly set up.
 
 
+ ## **3. Plan the Infrastructure**
+
+```bash
+terraform plan -out=tfplan
+```
+- **What it does:**
+  - Generates an execution plan that outlines the changes Terraform will make to the infrastructure.
+  - Shows a preview of resources to be created, updated, or destroyed.
+  - Saves the plan to a file (e.g., tfplan) for safe application in the next step.
+
