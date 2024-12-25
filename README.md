@@ -230,6 +230,44 @@ This section covers the setup and configuration of the web and database servers 
 
   [database_servers]
   18.191.30.79 ansible_ssh_private_key_file=~/.ssh/your_key.pem
+  ```
+### **2. Web Server Setup**
+
+### What it does:
+- Writes an Ansible playbook to install Node.js and NPM on the web server.
+- Clones the MERN application repository and installs all necessary dependencies.
+
+### Steps:
+1. Install Node.js and NPM.
+2. Clone the MERN repository and install dependencies.
+
+### Ansible playbook web_server_setup.yml :
+```bash
+---
+- hosts: web_servers
+  become: yes
+  tasks:
+    - name: Install Node.js
+      apt:
+        name: nodejs
+        state: present
+
+    - name: Install npm
+      apt:
+        name: npm
+        state: present
+
+    - name: Clone MERN application repository
+      git:
+        repo: 'https://github.com/your_user/mern-app.git'
+        dest: /home/ubuntu/mern-app
+
+    - name: Install dependencies
+      command: npm install
+      args:
+        chdir: /home/ubuntu/mern-app
+```
+
 
 
 
