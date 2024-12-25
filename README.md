@@ -382,8 +382,8 @@ ansible-playbook -i inventory database_server_setup.yml
 
 - **Ansible playbook (`app_deployment.yml`):**
 
-  ```yaml
-  ---
+```bash
+
 - name: Deploy MERN Application
   hosts: web_servers
   become: yes
@@ -471,8 +471,7 @@ ansible-playbook -i inventory database_server_setup.yml
       command: ps aux | grep 'mongod'
       become: yes
 
-
-  ```
+```
 
 ### Command to run the playbook:
 ```bash
