@@ -312,5 +312,44 @@ ansible-playbook -i inventory web_server_setup.yml
 ansible-playbook -i inventory database_server_setup.yml
 ```
 
+### **4. Application Deployment**
 
+- **What it does:**
+  - Configures environment variables and starts the backend Node.js application on the private subnet EC2 instance.
+  - Deploys the frontend on the public subnet EC2 instance by navigating to the frontend folder and running the appropriate commands.
 
+- **Steps:**
+  1. Set environment variables and start the backend Node.js application in the private subnet.
+  2. On the public subnet EC2 instance, navigate to the frontend folder, install the dependencies, and start the React application.
+
+- **Ansible playbook (`app_deployment.yml`):**
+
+  ```yaml
+  ---
+  - hosts: database_servers
+    become: yes
+    tasks:
+      - name: Set environment variables for backend
+        lineinfile:
+          path: /home/ubuntu/mern-app/backend/.env
+          line: "DB_URL=mongodb://your_mongo_db_host:27017/mern"
+
+      - name: Start the backend Node.js application
+        command: npm install && node index.js
+        args:
+          chdir: /home/ubuntu/mern-app/backend
+
+  - hosts: web_servers
+    become: yes
+    tasks:
+      - name: Navigate to frontend folder and install dependencies
+        command: npm install
+        args:
+          chdir: /home/ubuntu/mern-app/frontend
+
+      - name: Start the frontend React application
+        command: npm start
+        args:
+          chdir: /home/ubuntu/mern-app/frontend
+
+  ```
