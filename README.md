@@ -61,4 +61,47 @@ terraform plan -out=tfplan
   - Generates an execution plan that outlines the changes Terraform will make to the infrastructure.
   - Shows a preview of resources to be created, updated, or destroyed.
   - Saves the plan to a file (e.g., tfplan) for safe application in the next step.
+ 
+
+## **4. Apply the Terraform Configuration**
+
+```bash
+terraform apply tfplan
+```
+- **What it does:**
+  - Applies the changes specified in the tfplan file to provision or modify resources in your AWS account.
+  - Terraform will create, update, or destroy resources as outlined in the plan.
+  - The command confirms the changes before proceeding, giving you a final chance to approve or cancel.
+
+- **When to run:**
+  - Run this command after reviewing the terraform plan output and confirming that the infrastructure changes are correct.
+  - Use this command to actually provision the infrastructure on AWS based on the plan.
+ 
+- **OUTPUT:**
+```bash
+Terraform will perform the following actions:
+
+# aws_instance.web_server will be created
++ resource "aws_instance" "web_server" {
+    ...
+}
+
+Plan: 5 to add, 0 to change, 0 to destroy.
+
+Do you want to perform these actions? 
+Terraform will perform the actions described above.
+
+Enter a value: yes
+
+Apply complete! Resources: 5 added, 0 changed, 0 destroyed.
+```
+
+
+
+
+
+
+
+
+
 
