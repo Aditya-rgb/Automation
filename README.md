@@ -274,7 +274,38 @@ ansible-playbook -i inventory web_server_setup.yml
 ```
 
 
+## 3. Database Server Setup
 
+### What it does:
+- Installs and configures MongoDB on the database server.
+- Secures the MongoDB instance and creates necessary users and databases.
+
+### Steps:
+1. Install MongoDB.
+2. Configure MongoDB with necessary settings.
+3. Create a user and database for the MERN application.
+
+### Ansible playbook (database_server_setup.yml): :
+```bash
+---
+- hosts: database_servers
+  become: yes
+  tasks:
+    - name: Install MongoDB
+      apt:
+        name: mongodb
+        state: present
+
+    - name: Start MongoDB service
+      service:
+        name: mongodb
+        state: started
+        enabled: yes
+
+    - name: Create MongoDB database and user
+      command: mongo admin --eval "db.createUser({user: 'mernuser', pwd: 'securepassword', roles: [{role: 'readWrite', db: 'mern'}]})"
+
+```
 
 
 
