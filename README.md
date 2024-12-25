@@ -238,6 +238,38 @@ This section covers the setup and configuration of the web and database servers 
 
 ```
 
+## Description of Each Component
+
+### inventory/hosts:
+- This file defines the target EC2 instances and groups them into categories like `web_servers` (public subnet for frontend) and `database_servers` (private subnet for backend and database). It can also contain the necessary SSH access credentials for these instances.
+
+### playbooks/app_deployment.yml:
+- The main playbook to deploy the MERN application. It first configures the backend on the private EC2 instance, then deploys the frontend on the public EC2 instance.
+
+### playbooks/db_setup.yml:
+- This playbook configures the MongoDB instance on the private subnet EC2 instance. It involves installing MongoDB, configuring security, and setting up users and databases.
+
+### playbooks/web_setup.yml:
+- This playbook installs and configures the frontend on the EC2 instance in the public subnet. It installs the necessary Node.js environment, clones the frontend repository, and starts the React application.
+
+### roles/backend/tasks/main.yml:
+- Defines tasks related to the backend (Node.js and MongoDB). For example:
+  - Installing Node.js.
+  - Setting environment variables.
+  - Starting the backend application (Node.js).
+  - Configuring MongoDB (installation, user setup).
+
+### roles/frontend/tasks/main.yml:
+- Defines tasks related to the frontend (React application). For example:
+  - Installing dependencies (`npm install`).
+  - Starting the React frontend (`npm start`).
+
+### vars/main.yml:
+- Defines variables used in the playbooks, such as database URLs, Node.js versions, or paths to repositories. It helps keep configurations flexible and reusable across multiple environments.
+
+  
+
+
 ### **1. Ansible Configuration**
 
 - **What it does:**
