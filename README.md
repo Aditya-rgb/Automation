@@ -307,6 +307,10 @@ ansible-playbook -i inventory web_server_setup.yml
 
 ```
 
+### Command to run the playbook:
+```bash
+ansible-playbook -i inventory database_server_setup.yml
+```
 
 
 
