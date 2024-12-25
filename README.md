@@ -353,3 +353,9 @@ ansible-playbook -i inventory database_server_setup.yml
           chdir: /home/ubuntu/mern-app/frontend
 
   ```
+
+### Command to run the playbook:
+```bash
+ansible-playbook -i inventory app_deployment.yml
+```
+
