@@ -1,4 +1,4 @@
-# **Terraform Infrastructure Setup for AWS**
+rm Infrastructure Setup for AWS**
 
 ## **Introduction**
 This project uses Terraform to provision AWS infrastructure, including a VPC, subnets, EC2 instances, security groups, and IAM roles. The infrastructure is configured to host a MERN application with separate web and database servers.
@@ -30,4 +30,11 @@ This guide provides a step-by-step explanation of how to execute Terraform comma
 
 ```bash
 terraform init
+```
+- **What it does:**
+  - Downloads required provider plugins (e.g., AWS) and initializes the Terraform project.
+
+- **When to run:**
+  - Execute this command once after creating your scripts or whenever you add/modify modules or providers.
+
 
