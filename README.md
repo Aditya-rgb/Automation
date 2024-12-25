@@ -1,4 +1,3 @@
-rm Infrastructure Setup for AWS**
 
 ## **Introduction**
 This project uses Terraform to provision AWS infrastructure, including a VPC, subnets, EC2 instances, security groups, and IAM roles. The infrastructure is configured to host a MERN application with separate web and database servers.
@@ -205,6 +204,30 @@ These steps are strictly followed when:
 - You run `terraform apply`.
 - The modules and configurations in the scripts align with the required sequence.
 
+# **Part 2: Configuration and Deployment with Ansible**
+
+This section covers the setup and configuration of the web and database servers using Ansible for the deployment of a MERN application.
+
+---
+
+### **1. Ansible Configuration**
+
+- **What it does:**
+  - Configure Ansible to communicate with the AWS EC2 instances that were provisioned using Terraform.
+  - You need to have the public IP of the EC2 instances (retrieved from the Terraform output) and ensure that your SSH key pair is correctly configured for secure access.
+
+- **Steps:**
+  1. Set up the `inventory` file to include the public IP of the EC2 instance.
+  2. Configure your SSH key for secure communication with the EC2 instances.
+
+- **Example `inventory` file:**
+
+  ```ini
+  [web_servers]
+  18.191.30.78 ansible_ssh_private_key_file=~/.ssh/your_key.pem
+
+  [database_servers]
+  18.191.30.79 ansible_ssh_private_key_file=~/.ssh/your_key.pem
 
 
 
