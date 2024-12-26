@@ -27,6 +27,9 @@ This guide provides a step-by-step explanation of how to execute Terraform comma
 
 ---
 
+
+![Alt Text](/images/JK-1.JPG)![Alt Text](/images/auto-tera-installation.JPG)
+
 ## **1. Initialize the Terraform Project**
 
 ```bash
@@ -114,7 +117,7 @@ terraform output
 ```bash
 web_server_public_ip = "18.191.30.78"
 ```
-
+![Alt Text](/images/JK-1.JPG)![Alt Text](/images/auto-terraform-output.JPG)
 
 ## Project Structure
 ```bash
