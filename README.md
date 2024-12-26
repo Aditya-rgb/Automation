@@ -117,7 +117,7 @@ terraform output
 ```bash
 web_server_public_ip = "18.191.30.78"
 ```
-![Alt Text](/images/JK-1.JPG)![Alt Text](/images/auto-terraform-output.JPG)
+![Alt Text](/images/auto-terraform-output.JPG)
 
 ## Project Structure
 ```bash
@@ -270,7 +270,7 @@ This section covers the setup and configuration of the web and database servers 
 ### vars/main.yml:
 - Defines variables used in the playbooks, such as database URLs, Node.js versions, or paths to repositories. It helps keep configurations flexible and reusable across multiple environments.
 
-  
+  ![Alt Text](/images/auto-ansible-version.JPG)
 
 
 ### **1. Ansible Configuration**
@@ -481,6 +481,9 @@ ansible-playbook -i inventory database_server_setup.yml
 ansible-playbook -i inventory app_deployment.yml
 ```
 
+![Alt Text](/images/auto-ansible-success.JPG)
+
+
 ## Step 5: Verify the Application Is Running
 
 ### Check the Backend (Node.js) Service
@@ -491,3 +494,6 @@ ansible-playbook -i inventory app_deployment.yml
   ps aux | grep 'mongod'
   # Open a browser and visit the public IP of the web server EC2 instance
   ```
+
+![Alt Text](/images/auto-proof.JPG)
+  
