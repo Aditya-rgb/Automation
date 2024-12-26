@@ -28,7 +28,7 @@ This guide provides a step-by-step explanation of how to execute Terraform comma
 ---
 
 
-![Alt Text](/images/images/auto-tera-installation.JPG)
+![Alt Text](/images/auto-tera-installation-1.JPG)
 
 ## **1. Initialize the Terraform Project**
 
