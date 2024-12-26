@@ -1,8 +1,8 @@
 
-## **Introduction**
+# **Introduction**
 This project automates the deployment of a MERN stack application on AWS using Terraform for infrastructure provisioning and Ansible for configuration and application deployment.
 
-# **Part 1: Configuration and Deployment with Terraform**
+## **Part 1: Configuration and Deployment with Terraform**
 
 ## **Features**
 - Automated infrastructure provisioning using Terraform.
