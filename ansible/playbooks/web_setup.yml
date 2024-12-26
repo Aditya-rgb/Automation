@@ -13,7 +13,7 @@
 
     - name: Clone MERN application repository
       git:
-        repo: 'https://github.com/your_user/mern-app.git'
+        repo: 'git@github.com:UnpredictablePrashant/TravelMemory.git'
         dest: /home/ubuntu/mern-app
 
     - name: Install dependencies
